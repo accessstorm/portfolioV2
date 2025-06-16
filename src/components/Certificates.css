@@ -1,0 +1,232 @@
+.certificates-container {
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  margin-top: 80px; /* Add space for the fixed navbar */
+}
+
+.certificates-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: var(--text-color);
+  font-family: var(--font-heading);
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.certificate-domain {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.certificate-domain:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.domain-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-family: var(--font-heading);
+}
+
+.certificate-details {
+  position: relative;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.certificate-content {
+  text-align: center;
+}
+
+.certificate-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-family: var(--font-heading);
+}
+
+.certificate-content p {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+  font-family: var(--font-body);
+}
+
+.certificate-image {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 5px;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-button.prev {
+  left: -20px;
+}
+
+.nav-button.next {
+  right: -20px;
+}
+
+.certificate-counter {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-color);
+  font-family: var(--font-body);
+}
+
+.expand-hint {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #bbb;
+  opacity: 0.7;
+  font-family: var(--font-body);
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certificates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-domain {
+    margin-bottom: 1rem;
+  }
+
+  .nav-button {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .nav-button.prev {
+    left: -15px;
+  }
+
+  .nav-button.next {
+    right: -15px;
+  }
+}
+
+.certificate-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.certificate-modal {
+  background: rgba(30, 30, 30, 0.98);
+  border-radius: 16px;
+  box-shadow: 0 8px 48px 0 rgba(0,0,0,0.18);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 95vw;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalIn 0.35s cubic-bezier(.77,0,.18,1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@keyframes modalIn {
+  0% { opacity: 0; transform: scale(0.85) translateY(40px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: rgba(255,255,255,0.18);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.7rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close-btn:hover {
+  background: rgba(255,255,255,0.32);
+}
+
+.certificate-modal .domain-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .certificate-modal {
+    width: 95vw;
+    min-width: unset;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+  }
+  .modal-close-btn {
+    top: 8px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+} 

@@ -19,7 +19,10 @@ const CustomCursor = () => {
     gsap.set(follower, { xPercent: -50, yPercent: -50 });
 
     const handleMouseMove = (e) => {
-      gsap.to(cursor, { duration: 0.2, x: e.clientX, y: e.clientY });
+      // Instantly set the main cursor position
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      // Keep the follower trailing with GSAP
       gsap.to(follower, { duration: 0.6, x: e.clientX, y: e.clientY, ease: 'power2.out' });
     };
 

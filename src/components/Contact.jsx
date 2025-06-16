@@ -1,6 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
+const socialLinks = [
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/jayavrata-sengupta-123a62298',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg',
+  },
+  {
+    name: 'LeetCode',
+    url: 'https://leetcode.com/u/accessstorm/',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png',
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/accessstorm',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+  },
+];
+
 const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
@@ -40,7 +58,20 @@ const Contact = () => {
       >
         Contact Me
       </button>
-
+      <div className="home-social-links">
+        {socialLinks.map(link => (
+          <a
+            key={link.name}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="home-social-link"
+          >
+            <img src={link.icon} alt={link.name} className="home-social-icon" />
+            <span>{link.name}</span>
+          </a>
+        ))}
+      </div>
       <div
         ref={modalRef}
         className="contact-modal"

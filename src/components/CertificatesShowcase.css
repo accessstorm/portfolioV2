@@ -1,0 +1,226 @@
+.cert-preview-section {
+  margin: 6rem 0 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cert-preview-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 10vw, 8rem);
+  text-align: center;
+  margin-bottom: 80px;
+  color: var(--text-color);
+  letter-spacing: 0.05em;
+}
+
+.cert-preview-stack {
+  position: relative;
+  width: 1040px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(.4,2,.6,1);
+}
+
+.cert-img {
+  position: absolute;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(.4,2,.6,1);
+  cursor: pointer;
+}
+
+.cert-img-left {
+  left: 0;
+  top: 40px;
+  width: 400px;
+  height: 260px;
+  opacity: 0.7;
+  z-index: 1;
+  filter: grayscale(0.2) brightness(0.85);
+}
+
+.cert-img-right {
+  right: 0;
+  top: 40px;
+  width: 400px;
+  height: 260px;
+  opacity: 0.7;
+  z-index: 1;
+  filter: grayscale(0.2) brightness(0.85);
+}
+
+.cert-img-top {
+  left: 50%;
+  top: 0;
+  width: 520px;
+  height: 320px;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 1;
+  filter: none;
+}
+
+.cert-view-all {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(0,0,0,0.82);
+  color: #fff;
+  font-family: var(--font-heading, Arial, sans-serif);
+  font-size: 1.5rem;
+  padding: 1rem 2.5rem;
+  border-radius: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+
+.cert-preview-stack.hovered .cert-img-left {
+  left: -40px;
+  top: 60px;
+  width: 360px;
+  height: 234px;
+  opacity: 1;
+  filter: grayscale(0) brightness(1);
+}
+
+.cert-preview-stack.hovered .cert-img-right {
+  right: -40px;
+  top: 60px;
+  width: 360px;
+  height: 234px;
+  opacity: 1;
+  filter: grayscale(0) brightness(1);
+}
+
+.cert-preview-stack.hovered .cert-img-top {
+  width: 360px;
+  height: 234px;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+
+.cert-preview-stack.hovered .cert-img {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+
+.cert-preview-stack.hovered .cert-view-all {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@media (max-width: 1300px) {
+  .cert-preview-stack {
+    width: 98vw;
+    height: 48vw;
+    min-width: 320px;
+    min-height: 180px;
+    max-width: 99vw;
+    max-height: 60vw;
+  }
+  .cert-img-left, .cert-img-right {
+    width: 44vw;
+    height: 28vw;
+    min-width: 120px;
+    min-height: 80px;
+    max-width: 400px;
+    max-height: 260px;
+  }
+  .cert-img-top {
+    width: 58vw;
+    height: 36vw;
+    min-width: 180px;
+    min-height: 110px;
+    max-width: 520px;
+    max-height: 320px;
+  }
+  .cert-preview-stack.hovered .cert-img-left,
+  .cert-preview-stack.hovered .cert-img-right {
+    width: 40vw;
+    height: 25vw;
+    min-width: 100px;
+    min-height: 60px;
+    max-width: 360px;
+    max-height: 234px;
+    left: -4vw;
+    right: -4vw;
+    top: 6vw;
+  }
+  .cert-preview-stack.hovered .cert-img-top {
+    width: 40vw;
+    height: 25vw;
+    min-width: 100px;
+    min-height: 60px;
+    max-width: 360px;
+    max-height: 234px;
+    top: 6vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .cert-preview-stack {
+    width: 99vw;
+    height: 70vw;
+    min-width: 220px;
+    min-height: 120px;
+    max-width: 99vw;
+    max-height: 60vw;
+  }
+  .cert-img-left, .cert-img-right {
+    width: 48vw;
+    height: 32vw;
+    min-width: 80px;
+    min-height: 50px;
+    max-width: 180px;
+    max-height: 110px;
+    left: 0;
+    right: 0;
+    top: 20vw;
+  }
+  .cert-img-top {
+    width: 70vw;
+    height: 44vw;
+    min-width: 110px;
+    min-height: 70px;
+    max-width: 260px;
+    max-height: 160px;
+    top: 0;
+  }
+  .cert-preview-stack.hovered .cert-img-left,
+  .cert-preview-stack.hovered .cert-img-right {
+    width: 44vw;
+    height: 29vw;
+    min-width: 60px;
+    min-height: 30px;
+    max-width: 180px;
+    max-height: 110px;
+    left: -2vw;
+    right: -2vw;
+    top: 22vw;
+  }
+  .cert-preview-stack.hovered .cert-img-top {
+    width: 44vw;
+    height: 29vw;
+    min-width: 60px;
+    min-height: 30px;
+    max-width: 180px;
+    max-height: 110px;
+    top: 22vw;
+  }
+  .cert-view-all {
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+  }
+} 

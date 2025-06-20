@@ -82,4 +82,30 @@
 .nav-icon-link:hover,
 .nav-icon-link:focus {
   color: #00aaff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  z-index: 1000;
+  padding: 0 32px;
+  height: 64px;
+}
+.navbar-links {
+  display: flex;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  padding-top: 64px;
 } 

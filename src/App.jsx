@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from '@studio-freight/lenis'
 import Hero from './components/Hero'
 import About from './components/About'
+import TimelineSection from './components/TimelineSection'
 import Projects from './components/Projects'
 import CertificatesShowcase from './components/CertificatesShowcase'
 import Skills from './components/Skills'
@@ -16,6 +17,8 @@ import './styles/App.css'
 gsap.registerPlugin(ScrollTrigger)
 
 function App() {
+  const progressBarRef = useRef(null);
+
   useEffect(() => {
     // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
@@ -41,19 +44,35 @@ function App() {
 
     gsap.ticker.lagSmoothing(0)
 
+    // Scroll progress bar logic
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = progress + '%';
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    // Initial update
+    handleScroll();
     return () => {
       lenis.destroy()
+      window.removeEventListener('scroll', handleScroll);
     }
   }, [])
 
   return (
     <div className="app">
+      {/* Scroll Progress Bar */}
+      <div ref={progressBarRef} className="scroll-progress-bar" />
       <CustomCursor />
       <ParticleNetwork />
       <Navbar />
       <main>
         <Hero />
         <About />
+        <TimelineSection />
         <Projects />
         <CertificatesShowcase />
         <Skills />

@@ -223,4 +223,50 @@
     font-size: 1.1rem;
     padding: 0.7rem 1.2rem;
   }
+}
+
+@media (max-width: 700px) {
+  .cert-preview-stack {
+    width: 99vw;
+    height: 60vw;
+    min-width: 180px;
+    min-height: 80px;
+    max-width: 99vw;
+    max-height: 60vw;
+    overflow-x: auto;
+    position: relative;
+  }
+  .cert-img-left, .cert-img-right {
+    width: 38vw;
+    height: 22vw;
+    min-width: 60px;
+    min-height: 40px;
+    max-width: 120px;
+    max-height: 80px;
+    left: 0 !important;
+    right: 0 !important;
+    top: 30vw !important;
+    opacity: 1;
+    filter: grayscale(0.1) brightness(0.95);
+    position: absolute;
+  }
+  .cert-img-right {
+    left: auto !important;
+    right: 0 !important;
+  }
+  .cert-img-top {
+    width: 60vw;
+    height: 32vw;
+    min-width: 90px;
+    min-height: 50px;
+    max-width: 180px;
+    max-height: 110px;
+    left: 50% !important;
+    top: 0 !important;
+    transform: translateX(-50%) !important;
+    z-index: 2;
+    opacity: 1;
+    filter: none;
+    position: absolute;
+  }
 } 

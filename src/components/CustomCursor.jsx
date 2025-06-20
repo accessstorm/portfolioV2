@@ -1,11 +1,22 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
   const followerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     // Disable custom cursor on touch devices
     if (window.matchMedia('(pointer: coarse)').matches) {
       document.body.style.cursor = 'auto'; // Restore default cursor
@@ -26,7 +37,7 @@ const CustomCursor = () => {
       gsap.to(follower, { duration: 0.6, x: e.clientX, y: e.clientY, ease: 'power2.out' });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
 
     // Handle project image preview in Projects.jsx, this part remains for non-touch devices
     const projectItems = document.querySelectorAll('.project-item');
@@ -71,7 +82,7 @@ const CustomCursor = () => {
     });
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
       linksAndButtons.forEach(el => {
         el.removeEventListener('mouseenter', () => {
           gsap.to(follower, { scale: 1.5, duration: 0.3 });
@@ -81,7 +92,9 @@ const CustomCursor = () => {
         });
       });
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <>

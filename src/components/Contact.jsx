@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import SplitType from 'split-type';
 
 const socialLinks = [
   {
@@ -23,8 +24,25 @@ const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
   const formRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
+    // Animate Contact header
+    if (headerRef.current) {
+      const split = new SplitType(headerRef.current, { types: 'chars' });
+      gsap.from(split.chars, {
+        y: '110%',
+        opacity: 0,
+        stagger: 0.04,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
     if (isModalOpen) {
       document.body.style.overflow = 'hidden';
       gsap.to(modalRef.current, {
@@ -51,7 +69,7 @@ const Contact = () => {
 
   return (
     <section className="footer">
-      <h2 className="section-title">Get in Touch</h2>
+      <h2 className="section-title" ref={headerRef}>Get in Touch</h2>
       <button
         className="email-link"
         onClick={() => setIsModalOpen(true)}

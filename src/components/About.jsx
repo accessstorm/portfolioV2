@@ -6,11 +6,28 @@ import myFaceImage from '../assets/images/my-face.jpg';
 
 const About = () => {
   const aboutRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
+    // Animate About header
+    if (headerRef.current) {
+      const split = new SplitType(headerRef.current, { types: 'chars' });
+      gsap.from(split.chars, {
+        y: '110%',
+        opacity: 0,
+        stagger: 0.04,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
+    // Animate about text
     const aboutText = aboutRef.current.querySelector('.about-text');
     const lines = new SplitType(aboutText, { types: 'lines' });
-
     gsap.from(lines.lines, {
       y: '100%',
       stagger: 0.1,
@@ -30,7 +47,7 @@ const About = () => {
         <div className="about-image-container">
           <img src={myFaceImage} alt="Your Face" />
         </div>
-        <h2 className="section-title">About</h2>
+        <h2 className="section-title" ref={headerRef}>About</h2>
       </div>
       <div ref={aboutRef} className="about-text">
         <p>

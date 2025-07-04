@@ -62,7 +62,7 @@
 }
 .nav-icon-link .nav-label {
   display: none;
-  margin-left: 0.7rem;
+  position: absolute;
   font-size: 1.1rem;
   font-family: var(--font-heading);
   font-weight: bold;
@@ -73,11 +73,14 @@
   color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   white-space: nowrap;
-  z-index: 10;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
 }
 .nav-icon-link:hover .nav-label,
 .nav-icon-link:focus .nav-label {
-  display: inline-block;
+  display: block;
 }
 .nav-icon-link:hover,
 .nav-icon-link:focus {
@@ -108,4 +111,19 @@
 
 body {
   padding-top: 64px;
+}
+
+.floating-tooltip {
+  font-size: 1.1rem;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: #181818;
+  padding: 0.2rem 0.8rem;
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  white-space: nowrap;
+  margin-top: -10px;
+  transition: opacity 0.2s ease;
 } 

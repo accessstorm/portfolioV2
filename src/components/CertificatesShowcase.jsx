@@ -31,7 +31,7 @@ export default function CertificatesShowcase() {
 
   return (
     <section className="cert-preview-section">
-      <h2 className="cert-preview-title" ref={headerRef}>Certificates</h2>
+      <h2 className="section-title" ref={headerRef}>Certificates</h2>
       <div
         className={`cert-preview-stack${hovered ? ' hovered' : ''}`}
         onMouseEnter={() => setHovered(true)}

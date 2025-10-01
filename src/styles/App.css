@@ -2,6 +2,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
+/* Glassmorphism Timeline Containers */
+.timeline-glassmorphism-container {
+  width: 200px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.timeline-glassmorphism-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.timeline-glassmorphism-container:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.timeline-glassmorphism-container .glassmorphism-icon {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  margin-bottom: 10px;
+}
+
+.timeline-glassmorphism-container .glassmorphism-year {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-glassmorphism-container .glassmorphism-label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+}
+
 :root {
   --bg-color: #000000;
   --text-color: #FFFFFF;
@@ -24,7 +96,6 @@ html, body {
   cursor: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding-right: 32px;
 }
 
 ::-webkit-scrollbar {
@@ -42,7 +113,7 @@ main {
   z-index: 1;
   width: 100%;
   margin: 0;
-  padding: 0 0 0 32px;
+  padding: 0 0 0 0;
 }
 
 .section-title {
@@ -85,7 +156,7 @@ main {
   align-items: flex-end;
   gap: 0;
   position: relative;
-  padding: 0 32px;
+  padding: 0 32px 0 0;
 }
 
 .timeline-event {
@@ -228,31 +299,6 @@ main {
   z-index: 2;
 }
 
-.timeline-large-icon {
-  margin-bottom: 18px;
-  filter: drop-shadow(0 2px 8px #0008);
-}
-
-.timeline-large-year {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 8px;
-  font-weight: bold;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 8px #000a;
-}
-
-.timeline-large-label {
-  font-family: var(--font-body);
-  font-size: 1.18rem;
-  color: #e0e0e0;
-  margin-bottom: 12px;
-  text-align: center;
-  min-height: 48px;
-  text-shadow: 0 2px 8px #0008;
-  z-index: 1;
-}
 
 .timeline-large-reveal {
   position: absolute;
@@ -326,11 +372,6 @@ main {
   .timeline-section-large {
     padding: 0 0 32px 0;
   }
-  .timeline-ribbon-svg {
-    top: 80px;
-    height: 80px;
-    opacity: 0.5;
-  }
   .certificates-container {
     padding: 1rem 0.5rem;
     margin-top: 60px;
@@ -350,30 +391,8 @@ main {
     width: 98vw;
     padding: 1.2rem 0.5rem 1.2rem 0.5rem;
   }
-  body {
-    padding-right: 12px;
-  }
 }
 
-.timeline-ribbon-svg {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 120px;
-  z-index: 0;
-  pointer-events: none;
-  transform: translateY(-50%);
-  opacity: 0.7;
-  filter: blur(0.5px) drop-shadow(0 2px 12px #00aaff44);
-}
-@media (max-width: 900px) {
-  .timeline-ribbon-svg {
-    top: 80px;
-    height: 80px;
-    opacity: 0.5;
-  }
-}
 
 .project-image-cursor {
   position: fixed;
@@ -430,15 +449,11 @@ main {
 }
 @media (max-width: 900px) {
   .project-list {
-    padding-left: 12px;
-    padding-right: 12px;
+    /* Mobile styles if needed */
   }
 }
 
-.navbar {
-  width: 100%;
-  max-width: 100%;
-}
+/* Navbar styles moved to Navbar.css for glassmorphism effect */
 
 /* Loading Page Styles */
 .loading-page {

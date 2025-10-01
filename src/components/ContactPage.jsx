@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import ParticleNetwork from './ParticleNetwork';
 import CustomCursor from './CustomCursor';
+import { LinkedInIcon, GitHubIcon, LeetCodeIcon } from './GlassmorphismIcons';
 import './ContactPage.css';
 
 const socialLinks = [
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/jayavrata-sengupta-123a62298',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg',
+    icon: <LinkedInIcon size={24} />,
   },
   {
     name: 'LeetCode',
     url: 'https://leetcode.com/u/accessstorm/',
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png',
+    icon: <LeetCodeIcon size={24} />,
   },
   {
     name: 'GitHub',
     url: 'https://github.com/accessstorm',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+    icon: <GitHubIcon size={24} />,
   },
 ];
 
@@ -68,7 +69,7 @@ const ContactPage = () => {
                 rel="noopener noreferrer"
                 className="contact-social-icon-link"
               >
-                <img src={link.icon} alt={link.name} className="contact-social-icon" />
+                {link.icon}
                 <span>{link.name}</span>
               </a>
             ))}

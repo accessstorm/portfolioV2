@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App.jsx'
-import Certificates from './components/Certificates.jsx'
+import Projects from './components/Projects.jsx'
 import ContactPage from './components/ContactPage.jsx'
 import './styles/App.css'
 import './styles/components.css'
@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/certificates" element={<Certificates />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </BrowserRouter>

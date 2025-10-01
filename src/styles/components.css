@@ -198,7 +198,7 @@
 
 /* Projects */
 .projects {
-  padding: 15vh 5%;
+  padding: 15vh 5% 15vh 5%;
   position: relative;
   min-height: 100vh;
 }
@@ -228,6 +228,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .project-item::before {
@@ -245,7 +247,7 @@
 }
 
 .project-item:hover {
-  color: var(--bg-color);
+  color: var(--bg-color) !important;
 }
 
 .project-item:hover::before {
@@ -259,6 +261,8 @@
   transition: transform 0.4s;
   margin: 0;
   line-height: 1;
+  position: relative;
+  z-index: 3;
 }
 
 .project-description {
@@ -266,6 +270,8 @@
   opacity: 0.8;
   margin: 0;
   text-align: right;
+  position: relative;
+  z-index: 3;
 }
 
 .project-item:hover .project-title {
@@ -275,7 +281,7 @@
 /* Mobile Projects */
 @media (max-width: 768px) {
   .projects {
-    padding: 10vh 5%;
+    padding: 10vh 5% 10vh 0;
   }
 
   .project-content {
@@ -512,8 +518,8 @@
   }
 }
 
-/* Navbar */
-.navbar {
+/* Navbar - Styles moved to Navbar.css for glassmorphism effect */
+/* .navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -526,74 +532,13 @@
   z-index: 100;
   border-bottom: 1px solid var(--text-color);
   transition: transform 0.3s ease-in-out;
-}
+} */
 
-.navbar-visible {
-  transform: translateY(0);
-}
+/* Navbar visibility classes moved to Navbar.css */
 
-.navbar-hidden {
-  transform: translateY(-100%);
-}
+/* Navbar brand, links, and menu styles moved to Navbar.css */
 
-.navbar-brand a {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.navbar-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-links li a {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--text-color);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.navbar-links li a:hover {
-  color: #aaa;
-}
-
-.menu-toggle {
-  display: none;
-}
-
-/* Mobile Navbar */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: row;
-    align-items: center;
-    padding: 1rem 5%;
-  }
-
-  .navbar-brand {
-    flex: 1;
-  }
-
-  .desktop-nav {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 101;
-    padding: 0.5rem;
-  }
-}
+/* Mobile Navbar styles moved to Navbar.css */
 
 /* Mobile Sidebar */
 .sidebar-overlay {

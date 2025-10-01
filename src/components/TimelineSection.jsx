@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GraduationCapIcon, ProjectIcon, RobotIcon, CubesIcon, GlobeIcon } from './GlassmorphismIcons';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const timelineEvents = [
   {
@@ -37,13 +41,67 @@ const timelineEvents = [
 
 export default function TimelineSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  const containerRef = useRef();
+  const eventsRef = useRef([]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Set initial positions (squiggly arrangement)
+    const initialPositions = [
+      { x: -200, y: 100, rotation: -15 }, // 2019 - bottom left
+      { x: -100, y: -50, rotation: 10 },  // 2020 - top left
+      { x: 0, y: 150, rotation: -20 },    // 2021 - bottom center
+      { x: 100, y: -80, rotation: 15 },   // 2022 - top right
+      { x: 200, y: 80, rotation: -10 }    // 2023 - bottom right
+    ];
+
+    // Set initial positions
+    eventsRef.current.forEach((event, idx) => {
+      if (event && initialPositions[idx]) {
+        gsap.set(event, {
+          x: initialPositions[idx].x,
+          y: initialPositions[idx].y,
+          rotation: initialPositions[idx].rotation,
+          opacity: 0.7
+        });
+      }
+    });
+
+    // Animate to original positions on scroll
+    eventsRef.current.forEach((event, idx) => {
+      if (event) {
+        gsap.to(event, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          delay: idx * 0.1,
+          scrollTrigger: {
+            trigger: container,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none"
+          }
+        });
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   return (
-    <section className="timeline-section timeline-section-large">
+    <section className="timeline-section timeline-section-large" ref={containerRef}>
       <h2 className="section-title" style={{ marginBottom: 48, fontSize: '2.8rem', letterSpacing: '0.04em' }}>My Journey Timeline</h2>
       <div className="timeline-large-horizontal" style={{ position: 'relative' }}>
         {timelineEvents.map((event, idx) => (
           <div
+            ref={el => eventsRef.current[idx] = el}
             className="timeline-large-event"
             key={event.year}
             onMouseEnter={() => setHoveredIdx(idx)}

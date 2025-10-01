@@ -77,7 +77,7 @@ function App() {
       }
     }
     animate();
-    const timeout = setTimeout(() => {
+    const timeout = setTimeout(() => {  
       setLoading(false);
       // Mark that we've shown the loading screen in this session
       sessionStorage.setItem('hasShownLoading', 'true');

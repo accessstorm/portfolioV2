@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitType from 'split-type';
 import { GraduationCapIcon, ProjectIcon, RobotIcon, CubesIcon, GlobeIcon } from './GlassmorphismIcons';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,31 +10,31 @@ const timelineEvents = [
   {
     year: '2019',
     label: 'Started B.E. in AIML',
-    icon: <GraduationCapIcon size={64} color="#00aaff" />,
+    icon: <GraduationCapIcon size={72} color="#00aaff" />,
     reveal: 'Joined college and met amazing friends!',
   },
   {
     year: '2020',
     label: 'First Freelance Project',
-    icon: <ProjectIcon size={64} color="#a259ff" />,
+    icon: <ProjectIcon size={72} color="#a259ff" />,
     reveal: 'Built my first real-world app for a client.',
   },
   {
     year: '2021',
     label: 'ML Model Deployed',
-    icon: <RobotIcon size={64} color="#ffb300" />,
+    icon: <RobotIcon size={72} color="#ffb300" />,
     reveal: 'My ML model made its first prediction online!',
   },
   {
     year: '2022',
     label: 'Blender 3D Modeling',
-    icon: <CubesIcon size={64} color="#00c896" />,
+    icon: <CubesIcon size={72} color="#00c896" />,
     reveal: 'Created my first 3D character in Blender.',
   },
   {
     year: '2023',
     label: 'Portfolio Launched',
-    icon: <GlobeIcon size={64} color="#ff4c60" />,
+    icon: <GlobeIcon size={72} color="#ff4c60" />,
     reveal: 'Launched this portfolio to the world!',
   },
 ];
@@ -42,11 +43,29 @@ const timelineEvents = [
 export default function TimelineSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
   const containerRef = useRef();
+  const headerRef = useRef();
   const eventsRef = useRef([]);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    // Animate Timeline header
+    if (headerRef.current) {
+      const split = new SplitType(headerRef.current, { types: 'chars' });
+      gsap.from(split.chars, {
+        y: '110%',
+        opacity: 0,
+        stagger: 0.04,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
 
     // Set initial positions (squiggly arrangement)
     const initialPositions = [
@@ -97,7 +116,7 @@ export default function TimelineSection() {
 
   return (
     <section className="timeline-section timeline-section-large" ref={containerRef}>
-      <h2 className="section-title" style={{ marginBottom: 48, fontSize: '2.8rem', letterSpacing: '0.04em' }}>My Journey Timeline</h2>
+      <h2 ref={headerRef} className="timeline-main-title" style={{ marginBottom: 48 }}>My Journey Timeline</h2>
       <div className="timeline-large-horizontal" style={{ position: 'relative' }}>
         {timelineEvents.map((event, idx) => (
           <div

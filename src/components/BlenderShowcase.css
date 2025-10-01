@@ -1,0 +1,136 @@
+/* Blender Showcase page specific styles */
+.blender-showcase-page {
+  background: transparent;
+  color: #F5F5F5;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  --bg-color: transparent;
+  --text-color: #FFFFFF;
+}
+
+/* Blender Header */
+.blender-showcase-page .blender-header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+}
+
+.blender-showcase-page .blender-header-content {
+  text-align: center;
+  z-index: 2;
+}
+
+.blender-showcase-page .blender-main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 600;
+  color: #F5F5F5;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+}
+
+.blender-showcase-page .blender-main-title .char {
+  display: inline-block;
+}
+
+.blender-showcase-page .blender-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(245, 245, 245, 0.7);
+  letter-spacing: 0.05em;
+}
+
+/* Content Section */
+.blender-showcase-page .blender-content {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+}
+
+.blender-showcase-page .content-placeholder {
+  text-align: center;
+  max-width: 800px;
+}
+
+.blender-showcase-page .content-placeholder h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 600;
+  color: #F5F5F5;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.blender-showcase-page .content-placeholder p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(245, 245, 245, 0.7);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+/* Navbar Wrapper */
+.blender-showcase-page .blender-navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Custom Cursor Styles */
+.blender-showcase-page .cursor {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #F5F5F5;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+
+.blender-showcase-page .cursor-follower {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #F5F5F5;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.3s ease;
+}
+
+/* Hide scrollbar but keep functionality */
+.blender-showcase-page::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .blender-showcase-page .blender-content {
+    padding: 0 5%;
+  }
+  
+  .blender-showcase-page .content-placeholder h2 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .blender-showcase-page .content-placeholder p {
+    font-size: 1rem;
+  }
+}

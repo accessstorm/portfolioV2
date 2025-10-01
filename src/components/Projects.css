@@ -53,10 +53,11 @@
 .projects-page .projects-header {
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   background: transparent;
+  padding-top: 22vh;
 }
 
 .projects-page .projects-header-content {
@@ -66,7 +67,7 @@
 
 .projects-page .projects-main-title {
   font-family: var(--font-heading);
-  font-size: clamp(4rem, 12vw, 8rem);
+  font-size: clamp(5rem, 14vw, 10rem);
   font-weight: 600;
   color: #F5F5F5;
   margin-bottom: 20px;
@@ -84,6 +85,363 @@
   font-weight: 300;
   color: rgba(245, 245, 245, 0.7);
   letter-spacing: 0.05em;
+}
+
+/* Scroll Down Indicator */
+.projects-page .scroll-down-indicator {
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.projects-page .scroll-arrow {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245, 245, 245, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: scrollBeat 2s infinite;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.projects-page .scroll-arrow:hover {
+  background: rgba(192, 161, 94, 0.1);
+  border-color: rgba(192, 161, 94, 0.3);
+  color: #C0A15E;
+  transform: scale(1.1);
+  box-shadow: 
+    0 12px 40px rgba(192, 161, 94, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+@keyframes scrollBeat {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* Folder Stack */
+.projects-page .blender-folders-wrapper {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.projects-page .blender-folder-item {
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px 20px 8px 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  transform: translateX(-140px) rotate(0deg);
+  transform-origin: right center;
+}
+
+/* Glare effect for folder containers */
+.projects-page .blender-folder-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent 100%
+  );
+  transform: skewX(-15deg);
+  animation: folderGlassGlare 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 18px 18px 6px 6px;
+}
+
+@keyframes folderGlassGlare {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Uniform size for all folders */
+.projects-page .blender-folder-item {
+  width: 180px;
+  height: 60px;
+}
+
+
+.projects-page .blender-folder-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 18px 18px 6px 6px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.projects-page .blender-folder-item:hover::after {
+  background: var(--folder-color);
+  opacity: 0.1;
+}
+
+.projects-page .blender-folder-item:hover {
+  transform: translateX(-26px) rotate(0deg) scale(1.15);
+  border-color: var(--folder-color);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+
+.projects-page .blender-folder-item .folder-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+}
+
+.projects-page .blender-folder-item .folder-text {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #F5F5F5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Alternating text animation for folders */
+.projects-page .blender-folder-item .alternating-text {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  min-width: 120px;
+}
+
+.projects-page .blender-folder-item .alternating-text span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  animation: folderTextAlternate 4s infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projects-page .blender-folder-item .alternating-text .text-1 {
+  animation-delay: 0s;
+}
+
+.projects-page .blender-folder-item .alternating-text .text-2 {
+  animation-delay: 2s;
+}
+
+@keyframes folderTextAlternate {
+  0%, 45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50%, 95% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+.projects-page .blender-folder-item:hover .folder-text {
+  color: var(--folder-color);
+  transform: scale(1.05);
+  text-shadow: 0 0 10px var(--folder-color);
+}
+
+/* Blender Popup Container */
+.projects-page .blender-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 80vw;
+  max-width: 800px;
+  height: 60vh;
+  max-height: 600px;
+  background: rgba(20, 20, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 10000;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: auto !important;
+}
+
+.projects-page .blender-popup.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.projects-page .blender-popup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(255, 255, 255, 0.02) 50%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.projects-page .blender-popup-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  cursor: auto !important;
+}
+
+.projects-page .blender-popup h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: #F5F5F5;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.projects-page .blender-popup p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(245, 245, 245, 0.8);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.projects-page .blender-popup-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.projects-page .blender-popup-button {
+  padding: 12px 30px;
+  background: transparent;
+  border: 2px solid #C0A15E;
+  border-radius: 30px;
+  color: #C0A15E;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.projects-page .blender-popup-button:hover {
+  background: #C0A15E;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(192, 161, 94, 0.3);
+}
+
+.projects-page .blender-popup-button.secondary {
+  border-color: rgba(245, 245, 245, 0.3);
+  color: rgba(245, 245, 245, 0.8);
+}
+
+.projects-page .blender-popup-button.secondary:hover {
+  background: rgba(245, 245, 245, 0.1);
+  color: #F5F5F5;
+  border-color: rgba(245, 245, 245, 0.5);
+}
+
+/* Popup Overlay */
+.projects-page .blender-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.projects-page .blender-popup-overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* Foreground Layer */

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
@@ -12,8 +12,39 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
   const containerRef = useRef();
   const headerRef = useRef();
+  const [hoveredFolderId, setHoveredFolderId] = useState(null);
+  const [activeFolderId, setActiveFolderId] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef();
 
-  const projects = [
+  const folderData = [
+    {
+      id: 'blender',
+      label: 'BLENDER',
+      hoverText: 'CLICK ME',
+      pagePath: '/blender-showcase',
+      color: '#00c896',
+      bgGradient: 'linear-gradient(135deg, #0a2e1a 0%, #1a4d2e 50%, #2d5a3d 100%)'
+    },
+    {
+      id: 'aiml',
+      label: 'AIML',
+      hoverText: 'CLICK ME',
+      pagePath: '/aiml-showcase',
+      color: '#a259ff',
+      bgGradient: 'linear-gradient(135deg, #2a1a4d 0%, #3d2a5a 50%, #4d3a6a 100%)'
+    },
+    {
+      id: 'data',
+      label: 'DATA',
+      hoverText: 'CLICK ME',
+      pagePath: '/data-showcase',
+      color: '#ffb300',
+      bgGradient: 'linear-gradient(135deg, #4d3a0a 0%, #5a4d2a 50%, #6a5d3a 100%)'
+    }
+  ];
+
+  const projects = useMemo(() => [
     {
       id: 1,
       number: "01",
@@ -68,7 +99,7 @@ const Projects = () => {
       codeLink: "#",
       backgroundImage: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1920&h=1080&fit=crop&q=80"
     }
-  ];
+  ], []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -231,6 +262,35 @@ const Projects = () => {
 
   }, [projects]);
 
+  const handleFolderClick = (folderId, pagePath) => {
+    setActiveFolderId(folderId);
+    setShowPopup(true);
+    
+    // Animate popup in
+    setTimeout(() => {
+      if (popupRef.current) {
+        popupRef.current.classList.add('active');
+      }
+    }, 100);
+  };
+
+  const handleClosePopup = () => {
+    if (popupRef.current) {
+      popupRef.current.classList.remove('active');
+      setTimeout(() => {
+        setShowPopup(false);
+        setActiveFolderId(null);
+      }, 500);
+    }
+  };
+
+  const handleGoToPage = () => {
+    const activeFolder = folderData.find(folder => folder.id === activeFolderId);
+    if (activeFolder) {
+      window.location.href = activeFolder.pagePath;
+    }
+  };
+
   return (
     <div className="projects-page" ref={containerRef}>
       <ParticleNetwork />
@@ -239,12 +299,74 @@ const Projects = () => {
         <Navbar />
       </div>
       
+      {/* Folder Stack */}
+      <div className="blender-folders-wrapper">
+        {folderData.map((folder, index) => (
+          <div
+            key={folder.id}
+            className={`blender-folder-item ${hoveredFolderId === folder.id ? 'hovered' : ''}`}
+            style={{
+              '--folder-color': folder.color,
+              '--folder-bg': folder.bgGradient,
+              '--folder-index': index,
+              background: folder.bgGradient,
+              zIndex: folderData.length - index
+            }}
+            onMouseEnter={() => setHoveredFolderId(folder.id)}
+            onMouseLeave={() => setHoveredFolderId(null)}
+            onClick={() => handleFolderClick(folder.id, folder.pagePath)}
+          >
+            <div className="folder-content">
+              <div className="folder-text alternating-text">
+                <span className="text-1">{folder.label}</span>
+                <span className="text-2">{folder.hoverText}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Blender Popup */}
+      {showPopup && (
+        <>
+          <div className="blender-popup-overlay active" onClick={handleClosePopup} />
+          <div ref={popupRef} className="blender-popup">
+            <div className="blender-popup-content">
+              <h2>
+                {activeFolderId === 'blender' && 'Blender 3D Showcase'}
+                {activeFolderId === 'aiml' && 'AI/ML Projects'}
+                {activeFolderId === 'data' && 'Data Science Portfolio'}
+              </h2>
+              <p>
+                {activeFolderId === 'blender' && 'Explore my collection of 3D models, animations, and artwork created with Blender. From character modeling to architectural visualization, discover the creative possibilities of 3D art.'}
+                {activeFolderId === 'aiml' && 'Discover my artificial intelligence and machine learning projects. From neural networks to computer vision, explore the cutting-edge applications of AI technology.'}
+                {activeFolderId === 'data' && 'Browse through my data science projects and analytics work. From statistical modeling to data visualization, see how I turn data into actionable insights.'}
+              </p>
+              <div className="blender-popup-buttons">
+                <button className="blender-popup-button" onClick={handleGoToPage}>
+                  Go to Page
+                </button>
+                <button className="blender-popup-button secondary" onClick={handleClosePopup}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Projects Header */}
       <section className="projects-header">
         <div className="projects-header-content">
           <h1 ref={headerRef} className="projects-main-title">Projects</h1>
           <p className="projects-subtitle">A showcase of my creative and technical work</p>
+        </div>
+        <div className="scroll-down-indicator">
+          <div className="scroll-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 10L12 15L17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
       </section>
 

@@ -93,9 +93,18 @@ html, body {
   color: var(--text-color);
   font-family: var(--font-body);
   min-height: 100vh;
-  cursor: none;
+  cursor: url('/cursor/icons8-cursor.svg'), auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Custom cursor for all interactive elements */
+a, button, input, textarea, select, 
+[role="button"], [onclick], 
+.project-item, .certificate-card,
+.timeline-large-event, .blender-folder-item,
+.nav-icon-link, .resume-semicircle {
+  cursor: url('/cursor/icons8-cursor.svg'), pointer !important;
 }
 
 ::-webkit-scrollbar {

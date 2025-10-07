@@ -107,7 +107,7 @@ function App() {
     <div className="app">
       {/* Scroll Progress Bar */}
       <div ref={progressBarRef} className="scroll-progress-bar" />
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <ParticleNetwork />
       <Navbar />
       <ResumeButton />

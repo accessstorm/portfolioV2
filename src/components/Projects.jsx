@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Navbar from './Navbar';
-import CustomCursor from './CustomCursor';
 import ParticleNetwork from './ParticleNetwork';
 import './Projects.css';
 
@@ -235,31 +234,6 @@ const Projects = () => {
       }
     });
 
-    // Custom cursor effects
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    const projectLinks = document.querySelectorAll('.project-link');
-
-    projectLinks.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        gsap.to(cursor, { scale: 0, duration: 0.3 });
-        gsap.to(cursorFollower, { 
-          scale: 3, 
-          borderColor: '#C0A15E',
-          duration: 0.3 
-        });
-      });
-
-      link.addEventListener('mouseleave', () => {
-        gsap.to(cursor, { scale: 1, duration: 0.3 });
-        gsap.to(cursorFollower, { 
-          scale: 1, 
-          borderColor: '#F5F5F5',
-          duration: 0.3 
-        });
-      });
-    });
-
   }, [projects]);
 
   const handleFolderClick = (folderId, pagePath) => {
@@ -294,7 +268,6 @@ const Projects = () => {
   return (
     <div className="projects-page" ref={containerRef}>
       <ParticleNetwork />
-      <CustomCursor />
       <div className="projects-navbar-wrapper projects-page-navbar">
         <Navbar />
       </div>

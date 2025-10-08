@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import ParticleNetwork from './ParticleNetwork';
-import CustomCursor from './CustomCursor';
 import { LinkedInIcon, GitHubIcon, LeetCodeIcon } from './GlassmorphismIcons';
 import './ContactPage.css';
 
@@ -51,7 +50,6 @@ const ContactPage = () => {
 
   return (
     <div className="app">
-      <CustomCursor />
       <ParticleNetwork />
       <Navbar />
       <div className="contact-page-container redesigned-contact">

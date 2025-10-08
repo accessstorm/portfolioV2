@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Navbar from './Navbar';
-import CustomCursor from './CustomCursor';
 import ParticleNetwork from './ParticleNetwork';
 import './BlenderShowcase.css';
 
@@ -43,7 +42,6 @@ const BlenderShowcase = () => {
   return (
     <div className="blender-showcase-page" ref={containerRef}>
       <ParticleNetwork />
-      <CustomCursor />
       <div className="blender-navbar-wrapper">
         <Navbar />
       </div>

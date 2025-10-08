@@ -39,7 +39,6 @@ const timelineEvents = [
   },
 ];
 
-
 export default function TimelineSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
   const containerRef = useRef();
@@ -67,40 +66,25 @@ export default function TimelineSection() {
       });
     }
 
-    // Set initial positions (squiggly arrangement)
-    const initialPositions = [
-      { x: -200, y: 100, rotation: -15 }, // 2019 - bottom left
-      { x: -100, y: -50, rotation: 10 },  // 2020 - top left
-      { x: 0, y: 150, rotation: -20 },    // 2021 - bottom center
-      { x: 100, y: -80, rotation: 15 },   // 2022 - top right
-      { x: 200, y: 80, rotation: -10 }    // 2023 - bottom right
-    ];
-
-    // Set initial positions
-    eventsRef.current.forEach((event, idx) => {
-      if (event && initialPositions[idx]) {
-        gsap.set(event, {
-          x: initialPositions[idx].x,
-          y: initialPositions[idx].y,
-          rotation: initialPositions[idx].rotation,
-          opacity: 0.7
-        });
-      }
-    });
-
-    // Animate to original positions on scroll
+    // Simple scroll-based animation
     eventsRef.current.forEach((event, idx) => {
       if (event) {
+        // Set initial state
+        gsap.set(event, {
+          opacity: 0,
+          y: 100,
+          scale: 0.8
+        });
+
+        // Animate on scroll
         gsap.to(event, {
-          x: 0,
-          y: 0,
-          rotation: 0,
           opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: idx * 0.1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: container,
+            trigger: event,
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play none none none"
@@ -115,29 +99,31 @@ export default function TimelineSection() {
   }, []);
 
   return (
-    <section className="timeline-section timeline-section-large" ref={containerRef}>
-      <h2 ref={headerRef} className="timeline-main-title" style={{ marginBottom: 48 }}>My Journey Timeline</h2>
-      <div className="timeline-large-horizontal" style={{ position: 'relative' }}>
+    <section className="timeline-section" ref={containerRef}>
+      <h2 ref={headerRef} className="timeline-main-title">My Journey Timeline</h2>
+      <div className="timeline-scroll-container">
         {timelineEvents.map((event, idx) => (
           <div
             ref={el => eventsRef.current[idx] = el}
-            className="timeline-large-event"
+            className={`timeline-scroll-item ${idx % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}
             key={event.year}
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
           >
-            <div className="timeline-glassmorphism-container">
+            <div className="timeline-card">
               <div className="glassmorphism-icon">{event.icon}</div>
               <div className="glassmorphism-year">{event.year}</div>
               <div className="glassmorphism-label">{event.label}</div>
             </div>
-            <div className={`timeline-large-reveal${hoveredIdx === idx ? ' reveal-active' : ''}`}>
-              {event.reveal}
+            <div className={`timeline-description ${idx % 2 === 0 ? 'timeline-desc-left' : 'timeline-desc-right'}`}>
+              <div className="description-content">
+                <h3 className="description-title">{event.label}</h3>
+                <p className="description-text">{event.reveal}</p>
+              </div>
             </div>
-            <div className="timeline-large-magnifier" />
           </div>
         ))}
       </div>
     </section>
   );
-} 
+}

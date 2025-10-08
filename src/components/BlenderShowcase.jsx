@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Navbar from './Navbar';
 import ParticleNetwork from './ParticleNetwork';
+import ClickSparks from './ClickSparks';
 import './BlenderShowcase.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +43,7 @@ const BlenderShowcase = () => {
   return (
     <div className="blender-showcase-page" ref={containerRef}>
       <ParticleNetwork />
+      <ClickSparks />
       <div className="blender-navbar-wrapper">
         <Navbar />
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import ParticleNetwork from './ParticleNetwork';
+import ClickSparks from './ClickSparks';
 import { LinkedInIcon, GitHubIcon, LeetCodeIcon } from './GlassmorphismIcons';
 import './ContactPage.css';
 
@@ -51,6 +52,7 @@ const ContactPage = () => {
   return (
     <div className="app">
       <ParticleNetwork />
+      <ClickSparks />
       <Navbar />
       <div className="contact-page-container redesigned-contact">
         <div className="contact-header-block">

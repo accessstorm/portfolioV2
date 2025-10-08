@@ -11,6 +11,7 @@ import Skills from './components/Skills'
 import Contact from './components/Contact'
 import CustomCursor from './components/CustomCursor'
 import ParticleNetwork from './components/ParticleNetwork'
+import ClickSparks from './components/ClickSparks'
 import Navbar from './components/Navbar'
 import ResumeButton from './components/ResumeButton'
 import './styles/App.css'
@@ -109,6 +110,7 @@ function App() {
       <div ref={progressBarRef} className="scroll-progress-bar" />
       {/* <CustomCursor /> */}
       <ParticleNetwork />
+      <ClickSparks />
       <Navbar />
       <ResumeButton />
       <main>

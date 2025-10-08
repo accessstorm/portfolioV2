@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Navbar from './Navbar';
 import ParticleNetwork from './ParticleNetwork';
+import ClickSparks from './ClickSparks';
 import './Projects.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -268,6 +269,7 @@ const Projects = () => {
   return (
     <div className="projects-page" ref={containerRef}>
       <ParticleNetwork />
+      <ClickSparks />
       <div className="projects-navbar-wrapper projects-page-navbar">
         <Navbar />
       </div>

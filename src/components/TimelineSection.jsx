@@ -69,9 +69,9 @@ export default function TimelineSection() {
     // Simple scroll-based animation
     eventsRef.current.forEach((event, idx) => {
       if (event) {
-        // Set initial state
+        // Set initial state - keep opacity at 1 to prevent transparency flicker
         gsap.set(event, {
-          opacity: 0,
+          opacity: 1,
           y: 100,
           scale: 0.8
         });

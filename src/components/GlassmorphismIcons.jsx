@@ -9,13 +9,9 @@ export const HomeIcon = ({ size = 24, color = 'currentColor', className = '' }) 
     fill="none" 
     xmlns="http://www.w3.org/2000/svg" 
     className={className}
-    style={{ 
-      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))',
-      background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      padding: '4px',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.2)'
+    style={{
+      filter: 'drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3))',
+      transition: 'all 0.3s ease'
     }}
   >
     <path 
@@ -24,7 +20,6 @@ export const HomeIcon = ({ size = 24, color = 'currentColor', className = '' }) 
       strokeWidth="2" 
       strokeLinecap="round" 
       strokeLinejoin="round"
-      fill="rgba(255, 255, 255, 0.1)"
     />
     <path 
       d="M9 20V14H15V20" 
@@ -44,13 +39,9 @@ export const ProjectsIcon = ({ size = 24, color = 'currentColor', className = ''
     fill="none" 
     xmlns="http://www.w3.org/2000/svg" 
     className={className}
-    style={{ 
-      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))',
-      background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      padding: '4px',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.2)'
+    style={{
+      filter: 'drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3))',
+      transition: 'all 0.3s ease'
     }}
   >
     <rect 
@@ -62,7 +53,6 @@ export const ProjectsIcon = ({ size = 24, color = 'currentColor', className = ''
       ry="2" 
       stroke={color} 
       strokeWidth="2"
-      fill="rgba(255, 255, 255, 0.1)"
     />
     <circle 
       cx="9" 
@@ -70,7 +60,6 @@ export const ProjectsIcon = ({ size = 24, color = 'currentColor', className = ''
       r="2" 
       stroke={color} 
       strokeWidth="2"
-      fill="rgba(255, 255, 255, 0.1)"
     />
     <path 
       d="M21 15.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3.5" 
@@ -90,13 +79,9 @@ export const ContactIcon = ({ size = 24, color = 'currentColor', className = '' 
     fill="none" 
     xmlns="http://www.w3.org/2000/svg" 
     className={className}
-    style={{ 
-      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))',
-      background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      padding: '4px',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.2)'
+    style={{
+      filter: 'drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3))',
+      transition: 'all 0.3s ease'
     }}
   >
     <path 
@@ -105,7 +90,6 @@ export const ContactIcon = ({ size = 24, color = 'currentColor', className = '' 
       strokeWidth="2" 
       strokeLinecap="round" 
       strokeLinejoin="round"
-      fill="rgba(255, 255, 255, 0.1)"
     />
   </svg>
 );

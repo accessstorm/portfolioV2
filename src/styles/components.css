@@ -697,37 +697,4 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
-.nav-icon-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--text-color);
-  transition: color 0.28s cubic-bezier(.4,2,.6,1), transform 0.35s cubic-bezier(.22,1,.36,1);
-  position: relative;
-  transform: scale(1);
-}
-
-.nav-label {
-  display: none;
-  margin-left: 0;
-  margin-top: 0;
-  font-size: 1.1rem;
-  font-family: var(--font-heading);
-  font-weight: bold;
-  letter-spacing: 1px;
-  background: #181818;
-  padding: 0.2rem 0.8rem;
-  border-radius: 8px;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  white-space: nowrap;
-  z-index: 10;
-  transition: opacity 0.2s, transform 0.2s;
-}
-
-.nav-icon-link:hover .nav-label,
-.nav-icon-link:focus .nav-label {
-  display: block;
-  opacity: 1;
-  transform: translateY(0) scale(1.05);
-} 
+/* Nav icon styles moved to Navbar.css to avoid conflicts */ 
